@@ -1,0 +1,41 @@
+th {
+    text-align: center;
+  }
+  
+  .cart_img-box {
+    width: 80px;
+  }
+  
+  .cart_img-box img {
+    width: 100%;
+  }
+  
+  .cart_item-del i {
+    cursor: pointer;
+  }
+  
+  .cart_page-btn button {
+   margin-bottom: 15px;
+   border-radius: 20px;
+   
+  }
+  .cart_page-btn button a{
+    color: #fff !important;
+    text-decoration: none;
+  }
+  
+  .cart_page-btn button a:hover {
+    color: #372c2c !important;
+  }
+  
+  .cart_subtotal {
+    color: #df2020;
+    font-size: 1.5rem;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    th,
+    td {
+      font-size: 0.8rem;
+    }
+  }
