@@ -8,12 +8,12 @@ export default function EditUser() {
   const {id}=useParams();
 
   const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
+    name: "",
+    price: "",
+    image: "",
   });
 
-  const { firstName, lastName, address } = user;
+  const { name, price, image } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -25,12 +25,12 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/api/student/${id}`, user);
+    await axios.put(`http://localhost:8080/api/${id}`, user);
     navigate("/");
   };
 
   const loadUser=async()=>{
-    const result=await axios.get(`http://localhost:8080/api/student/${id}`)
+    const result=await axios.get(`http://localhost:8080/api/${id}`)
     setUser(result.data)
   }
 
@@ -43,43 +43,31 @@ export default function EditUser() {
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
               <label htmlFor="FirstName" className="form-label">
-                First Name
+                Fame
               </label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter your first name"
-                name="firstName"
-                value={firstName}
+                placeholder="Enter food name"
+                name="name"
+                value={name}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="LastName" className="form-label">
-                Last name
+              <label htmlFor="price" className="form-label">
+                price
               </label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter your username"
-                name="lastName"
-                value={lastName}
+                placeholder="Enter food price"
+                name="price"
+                value={price}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="Address" className="form-label">
-                Address
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="address"
-                name="address"
-                value={address}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
+            
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>

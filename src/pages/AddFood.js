@@ -10,12 +10,12 @@ const [users,setUsers]=useState([]);
 const {id}=useParams();
 const [user, setUser] = useState({
     name: "",
-    description: "",
+    // description: "",
     image: "",
     price:"",
 });
 
-const { name, description, image, price } = user;
+const { name, image, price } = user;
 
 const onInputChange = (e) => {
 setUser({ ...user, [e.target.name]: e.target.value });
@@ -40,7 +40,7 @@ const onSubmit = async (e) => {
     console.log(user.name);
 
     console.log(user.image);
-     await axios.post("http://localhost:8080/api/test/image",user);
+     await axios.post("http://localhost:8080/api/image",user);
 
      alert("Image Added Succesfully")
 
@@ -69,7 +69,7 @@ const onSubmit = async (e) => {
                 onChange={(e) =>onInputChange(e)}  />
 
             </div>
-             <div className="mb-3">
+             {/* <div className="mb-3">
               <label htmlFor="LastName" className="form-label">
                 Description
               </label>
@@ -80,7 +80,7 @@ const onSubmit = async (e) => {
                 name="description"
                 value={description}
                 onChange={(e) => onInputChange(e)} />
-            </div>
+            </div> */}
             <div className="mb-3">
               <label htmlFor="LastName" className="form-label">
                 Price

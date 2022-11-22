@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Helmet from '../components/Helmet/Helmet.js';
 import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
 import heroImg from '../assets/Images/heroimage.jpg';
@@ -10,13 +10,13 @@ import feature1 from '../assets/Images/service-01.png';
 import feature2 from '../assets/Images/service-02.png';
 import feature3 from '../assets/Images/service-03.png';
 
-import products from '../assets/fake-data/products.js';
-import foodCategoryImg1 from '../assets/Images/Noodles.png';
-import foodCategoryImg2 from '../assets/Images/Shrimp.png';
-import foodCategoryImg3 from '../assets/Images/dumplings.png';
-import foodCategoryImg4 from '../assets/Images/Asian_Food.png';
+// import products from '../assets/fake-data/products.js';
+// import foodCategoryImg1 from '../assets/Images/Noodles.png';
+// import foodCategoryImg2 from '../assets/Images/Shrimp.png';
+// import foodCategoryImg3 from '../assets/Images/dumplings.png';
+// import foodCategoryImg4 from '../assets/Images/Asian_Food.png';
 
-import ProductCard from '../components/UI/product-card/ProductCard.js';
+// import ProductCard from '../components/UI/product-card/ProductCard.js';
 
 import whyImg from '../assets/Images/location.png';
 
@@ -47,41 +47,41 @@ const featureData =[
 ]
 
 const Home = () => {
-  const [category, setCategory] = useState('ALL')
-    const [allProducts, setAllProducts] = useState(products)
+//   const [category, setCategory] = useState('ALL')
+//     const [allProducts, setAllProducts] = useState(products)
 
-    const [DeliciousNoodles, setDeliciousNoodles] = useState([])
+    // const [DeliciousNoodles, setDeliciousNoodles] = useState([])
 
-    useEffect(() => {
-        const filteredNoodles = products.filter(item => item.category === 'Noodles')
-        const sliceNoodles = filteredNoodles.slice(0,4)
-        setDeliciousNoodles(sliceNoodles)
-    },[])
+    // useEffect(() => {
+    //     const filteredNoodles = products.filter(item => item.category === 'Noodles')
+    //     const sliceNoodles = filteredNoodles.slice(0,4)
+    //     setDeliciousNoodles(sliceNoodles)
+    // },[])
 
-    useEffect(() =>{
-        if (category === "ALL") {
-            setAllProducts(products);
-        }
+    // useEffect(() =>{
+    //     if (category === "ALL") {
+    //         setAllProducts(products);
+    //     }
 
-        if(category === 'NOODLES'){
-            const filteredProducts = products.filter(item => item.category === 'Noodles')
-            setAllProducts(filteredProducts)
-        }
+    //     if(category === 'NOODLES'){
+    //         const filteredProducts = products.filter(item => item.category === 'Noodles')
+    //         setAllProducts(filteredProducts)
+    //     }
 
-        if(category === 'SHRIMPS'){
-            const filteredProducts = products.filter(item => item.category === 'Shrimp')
-            setAllProducts(filteredProducts)
-        }
+    //     if(category === 'SHRIMPS'){
+    //         const filteredProducts = products.filter(item => item.category === 'Shrimp')
+    //         setAllProducts(filteredProducts)
+    //     }
 
-        if(category === 'DUMPLINGS'){
-            const filteredProducts = products.filter(item => item.category === 'Dumplings')
-            setAllProducts(filteredProducts)
-        }
-        if(category === 'ASIAN FOOD'){
-            const filteredProducts = products.filter(item => item.category === 'Asian Food')
-            setAllProducts(filteredProducts)
-        }
-    },[category])
+    //     if(category === 'DUMPLINGS'){
+    //         const filteredProducts = products.filter(item => item.category === 'Dumplings')
+    //         setAllProducts(filteredProducts)
+    //     }
+    //     if(category === 'ASIAN FOOD'){
+    //         const filteredProducts = products.filter(item => item.category === 'Asian Food')
+    //         setAllProducts(filteredProducts)
+    //     }
+    // },[category])
     return (
         <Helmet title="Home">
             <section>
@@ -140,7 +140,7 @@ const Home = () => {
                     </Row>
                 </Container>
             </section>
-            <section>
+            {/* <section>
                 <Container>
                     <Row>
                         <Col lg='12' className="text-center">
@@ -173,7 +173,7 @@ const Home = () => {
                         }     
                     </Row>
                 </Container>
-            </section>
+            </section> */}
             <section className="why_choose-us">
                 <Container>
                     <Row>
@@ -214,7 +214,7 @@ const Home = () => {
                 </Container>
             </section>
 
-            <section className="pt-0 mb-5">
+            {/* <section className="pt-0 mb-5">
                 <Container>
                     <Row>
                         <Col lg='12' className="text-center mb-5">
@@ -229,7 +229,7 @@ const Home = () => {
                         }
                     </Row>
                 </Container>
-            </section>
+            </section> */}
 
             <section>
                 <Container>
@@ -254,34 +254,6 @@ const Home = () => {
             
         </Helmet>
     )
-
-
-
-
-//   const [content, setContent] = useState("");
-
-//   useEffect(() => {
-//     UserService.getPublicContent().then(
-//       (response) => {
-//         setContent(response.data);
-//       },
-//       (error) => {
-//         const _content =
-//           (error.response && error.response.data) ||error.message ||
-//           error.toString();
-
-//         setContent(_content);
-//       }
-//     );
-//   }, []);
-
-  // return (
-  //   <div className="container">
-  //     {/* <header className="jumbotron">
-  //       <h3>{content}</h3>
-  //     </header> */}
-  //   </div>
-  // );
 };
 
 export default Home;

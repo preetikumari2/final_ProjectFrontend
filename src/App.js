@@ -22,32 +22,33 @@ import AddUser from "./pages/AddUser";
 import EditUser from "./pages/EditUser";
 import ViewUser from "./pages/ViewUser";
 import AddFood from "./pages/AddFood";
-import { cartUiActions } from '../src/store/shopping-cart/cartUiSlice';
+// import { cartUiActions } from '../src/store/shopping-cart/cartUiSlice';
 import { useSelector, useDispatch } from "react-redux";
+import Register from "./pages/Register";
 
 const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
   
-  const headerRef = useRef(null);
-  const totalQantity = useSelector(state => state.cart.totalQantity);
-    const dispatch = useDispatch() ;
-    const toggleCart = () =>{
-      dispatch(cartUiActions.toggle());
-  }
+  // const headerRef = useRef(null);
+  // const totalQantity = useSelector(state => state.cart.totalQantity);
+  //   const dispatch = useDispatch() ;
+  //   const toggleCart = () =>{
+  //     dispatch(cartUiActions.toggle());
+  // }
 
-  useEffect(() =>{
-    window.addEventListener('scroll', ()=>{
-        if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
-            headerRef.current.classList.add('header_shrink');
-        }
-        else{
-            headerRef.current.classList.remove('header_shrink');
-        }
-    })
-    return () => window.removeEventListener("scroll", null);
-  },[])
+  // useEffect(() =>{
+  //   window.addEventListener('scroll', ()=>{
+  //       if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
+  //           headerRef.current.classList.add('header_shrink');
+  //       }
+  //       else{
+  //           headerRef.current.classList.remove('header_shrink');
+  //       }
+  //   })
+  //   return () => window.removeEventListener("scroll", null);
+  // },[])
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -73,6 +74,11 @@ const App = () => {
           <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/register"} className="nav-link">
+              SignUp
             </Link>
           </li>
           {/* {showModeratorBoard && (
@@ -128,10 +134,7 @@ const App = () => {
               </Link>
             </li>
             
-            <span className="cart_icon" onClick={toggleCart}>
-            <i class="ri-shopping-basket-fill"></i>
-                  <span className="cart_badge">{totalQantity}</span>
-            </span>
+            
             <li className="nav-item">
               <a href="/login" className="nav-link" onClick={logOut}>
               <i class="ri-logout-circle-r-fill"></i>
@@ -166,6 +169,8 @@ const App = () => {
           <Route path="/editUser/:id" element={<EditUser/>} />
           <Route path="/viewUser/:id" element={<ViewUser/>} />
           <Route path="/addFood" element={<AddFood/>} />
+          <Route path="/register" element={<Register/>} />
+
 
         </Routes>
       </div>

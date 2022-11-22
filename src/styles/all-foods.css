@@ -1,29 +1,13 @@
-.search_widget,
-.sorting_widget select {
-  padding: 7px 15px;
-  border: 1px solid #fde4e4;
-  border-radius: 5px;
-  cursor: pointer;
+.food_containers{
+  padding-top: 100px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding-left: 70px;
+  width: 1000px;
 }
-.search_widget input {
-  border: none;
-}
-
-.search_widget input:focus {
-  outline: none;
-}
-
-@media only screen and (max-width: 768px) {
-  .search_widget {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  .search_widget input {
-    width: 100%;
-    font-size: 0.8rem;
-  }
-  .sorting_widget select {
-    width: 100% !important;
-    font-size: 0.8rem;
-  }
+.image_div{
+  height: 150px;
+  width: 100px;
+  display: inline-block;
+  object-fit: cover;
 }

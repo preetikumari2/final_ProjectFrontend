@@ -16,12 +16,12 @@ const AdminBoard = () => {
     },[]);
 
     const loadUsers=async ()=>{
-        const result=await axios.get("http://localhost:8080/api/springapi");
+        const result=await axios.get("http://localhost:8080/api/allimages");
         setUsers(result.data);
     }
 
     const deleteUser=async(id)=>{
-      await axios.delete(`http://localhost:8080/api/springapi/${id}`);
+      await axios.delete(`http://localhost:8080/api/${id}`);
       loadUsers();
     }
   return (
@@ -32,20 +32,20 @@ const AdminBoard = () => {
     <tr>
       <th scope="col">id</th>
       <th scope="col">Image</th>
-      <th scope="col">Description</th>
       <th scope="col">Price</th>
+      {/* <th scope="col">Status</th> */}
       <th scope="col">Action</th>
-      {/* <th scope="col">Add</th> */}
     </tr>
   </thead>
   <tbody>
     { 
     users.map((user,index)=>{
-     return(   <tr>
+     return(   
+     <tr className="update_image">
       <th scope="row" key={index}>{index+1}</th>
-      <td>{user.firstName}</td>
-      <td>{user.lastName}</td>
-      <td>{user.address}</td>
+      <td className="update_image"><img  src={user.image} alt='user image' /></td>
+      
+      <td>{user.price}</td>
       <td>
         <Link className='btn btn-primary mx-2' to={`/viewUser/${user.id}`}>View</Link>
         <Link className='btn btn-outline-primary mx-2' to={`/editUser/${user.id}`}>Edit</Link>

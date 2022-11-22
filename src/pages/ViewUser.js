@@ -4,9 +4,9 @@ import { Link, useParams } from "react-router-dom";
 
 export default function ViewUser() {
   const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    address: "",
+    name: "",
+    price: "",
+    image: "",
   });
 
   const { id } = useParams();
@@ -16,13 +16,17 @@ export default function ViewUser() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/api/student/${id}`);
+    const result = await axios.get(`http://localhost:8080/api/${id}`);
     setUser(result.data);
+    console.log(result.data)
   };
-
+  
   return (
     <div className="container">
       <div className="row">
+        {
+          console.log(user)
+        }
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4">User Details</h2>
 
@@ -31,16 +35,16 @@ export default function ViewUser() {
               Details of user id : {user.id}
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
-                  <b>First Name:</b>
-                  {user.firstName}
+                  <b>name:</b>
+                  {user.name}
                 </li>
                 <li className="list-group-item">
-                  <b>Last Name:</b>
-                  {user.lastName}
+                  <b>price:</b>
+                  {user.price}
                 </li>
                 <li className="list-group-item">
-                  <b>Address:</b>
-                  {user.address}
+                  <b>Image:</b>
+                  <img src={user.image} />
                 </li>
               </ul>
             </div>

@@ -1,4 +1,4 @@
-th {
+/* th {
     text-align: center;
   }
   
@@ -38,4 +38,19 @@ th {
     td {
       font-size: 0.8rem;
     }
+  } */
+  .cart_container{
+    padding-top: 120px;
+  }
+  .cart-image{
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    object-fit: cover;
+  }
+  .cart_heading{
+    padding-bottom: 5px;
+  }
+  .cart_incre{
+    display: flex;
   }
