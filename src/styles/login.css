@@ -1,7 +1,12 @@
-.login_page a{
+.login_page {
     text-decoration: none;
     color: black;
+    margin: 50px;
+    
 }
 .login_page a:hover{
-    color: rgb(34, 59, 132);
+    color: rgb(253, 189, 189);
+}
+.login_page button{
+    background-color: red;
 }

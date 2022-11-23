@@ -1,4 +1,3 @@
-
 const Reducer=(cart=[],action)=>{
  if(action.type==="ADD"){
  let tempcart=cart.filter((user)=>user.id===action.payload.id);

@@ -3,23 +3,23 @@ import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 import '../styles/contact.css';
 const Contact=()=>{ 
-const navigate=useNavigate() 
-const [user,setUser]=useState([ 
-      { 
-        email : "", 
-        name : "", 
-        issue:"", 
-        city:"", 
-        state:"", 
-        zip:"" 
-      } 
-    ]); 
-const { email, name, issue,city,state,zip} = user; 
-const onInputChange = (e) => { 
-    setUser({ ...user, [e.target.name]: e.target.value }); 
-  };
-const onSubmit = async (e) => { 
-   e.preventDefault(); 
+  const navigate=useNavigate() 
+  const [user,setUser]=useState([ 
+        { 
+          email : "", 
+          name : "", 
+          issue:"", 
+          city:"", 
+          state:"", 
+          zip:"" 
+        } 
+      ]); 
+  const { email, name, issue,city,state,zip} = user; 
+  const onInputChange = (e) => { 
+      setUser({ ...user, [e.target.name]: e.target.value }); 
+    };
+  const onSubmit = async (e) => { 
+    e.preventDefault(); 
     await axios.post("http://localhost:8080/api/test/contact", user); 
     alert("Details Submitted Successfully") 
     navigate("/") 
@@ -32,35 +32,37 @@ const onSubmit = async (e) => {
   <br></br> 
   <div class="col-md-6">
   <br></br> 
-    <label for="inputEmail4" class="form-label">Email</label> 
-    <input type="email" name="email" value={email} onChange={(e) => onInputChange(e)} class="form-control" id="inputEmail4"/> 
+    <label for="inputEmail4" class="form-label"></label> 
+    <input type="email" placeholder="Enter your email" name="email" value={email} onChange={(e) => onInputChange(e)} class="form-control" id="inputEmail4"/> 
   </div> 
   <div class="col-md-6"> 
     <br></br> 
-    <label for="inputText" class="form-label">Name</label> 
-    <input type="text" name="name" value={name} onChange={(e) => onInputChange(e)} class="form-control" id="inputText4"/> 
+    <label for="inputText" class="form-label"></label> 
+    <input type="text" name="name" placeholder="Enter name" value={name} onChange={(e) => onInputChange(e)} class="form-control" id="inputText4"/> 
   </div> 
   <br></br> 
   <div class="col-12"> 
-    <label for="inputAddress" class="form-label">Any Issues</label> 
-    <input type="text" name="issue" value={issue} onChange={(e) => onInputChange(e)} class="form-control" id="inputAddress" placeholder="Contact-us and Clarify"/> 
+    <label for="inputAddress" class="form-label"></label> 
+    <input type="text" name="issue" placeholder="Enter your issue" value={issue} onChange={(e) => onInputChange(e)} class="form-control" id="inputAddress" /> 
   </div>
 <div class="col-md-6"> 
-    <label for="inputCity" class="form-label">City</label> 
-    <input type="text" name="city" value={city} onChange={(e) => onInputChange(e)} class="form-control" id="inputCity"/> 
+    <label for="inputCity" class="form-label"></label> 
+    <input type="text" name="city" placeholder="Enter city" value={city} onChange={(e) => onInputChange(e)} class="form-control" id="inputCity"/> 
   </div> 
   <div class="col-md-4"> 
-    <label for="inputState" class="form-label">State</label> 
+    <label for="inputState" class="form-label"></label> 
     <select className="form-select" aria-label="size 3 select example" name="state" value={state} onChange={(e) => onInputChange(e)}> 
-                      <option value="Other">Choose</option> 
+                      <option value="Other" placeholder="state">Choose State</option> 
                       <option value="karnataka">Karnataka</option> 
                       <option value="hyderabar">Hyderabad</option> 
-                      <option value="pune">Pune</option> 
+                      <option value="pune">Pune</option>
+                      <option value="pune">Delhi</option> 
+                      <option value="pune">Maharastra</option> 
                     </select>
 </div> 
   <div class="col-md-2"> 
-    <label for="inputZip" class="form-label">Zip</label> 
-    <input type="text" name="zip" value={zip} onChange={(e) => onInputChange(e)} class="form-control" id="inputZip"/> 
+    <label for="inputZip" class="form-label"></label> 
+    <input type="text" name="zip" placeholder="Pin Code" value={zip} onChange={(e) => onInputChange(e)} class="form-control" id="inputZip"/> 
   </div>  
   <div class="col-12"> 
     <br></br> 

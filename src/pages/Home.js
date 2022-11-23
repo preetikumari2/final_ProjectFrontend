@@ -10,13 +10,6 @@ import feature1 from '../assets/Images/service-01.png';
 import feature2 from '../assets/Images/service-02.png';
 import feature3 from '../assets/Images/service-03.png';
 
-// import products from '../assets/fake-data/products.js';
-// import foodCategoryImg1 from '../assets/Images/Noodles.png';
-// import foodCategoryImg2 from '../assets/Images/Shrimp.png';
-// import foodCategoryImg3 from '../assets/Images/dumplings.png';
-// import foodCategoryImg4 from '../assets/Images/Asian_Food.png';
-
-// import ProductCard from '../components/UI/product-card/ProductCard.js';
 
 import whyImg from '../assets/Images/location.png';
 
@@ -24,8 +17,6 @@ import networkImg from '../assets/Images/network.png';
 
 import TestimonialSlider from '../components/UI/slider/TestimonialSlider.js';
 
-
-// import UserService from "../Services/user-service";
 
 
 const featureData =[
@@ -47,41 +38,7 @@ const featureData =[
 ]
 
 const Home = () => {
-//   const [category, setCategory] = useState('ALL')
-//     const [allProducts, setAllProducts] = useState(products)
 
-    // const [DeliciousNoodles, setDeliciousNoodles] = useState([])
-
-    // useEffect(() => {
-    //     const filteredNoodles = products.filter(item => item.category === 'Noodles')
-    //     const sliceNoodles = filteredNoodles.slice(0,4)
-    //     setDeliciousNoodles(sliceNoodles)
-    // },[])
-
-    // useEffect(() =>{
-    //     if (category === "ALL") {
-    //         setAllProducts(products);
-    //     }
-
-    //     if(category === 'NOODLES'){
-    //         const filteredProducts = products.filter(item => item.category === 'Noodles')
-    //         setAllProducts(filteredProducts)
-    //     }
-
-    //     if(category === 'SHRIMPS'){
-    //         const filteredProducts = products.filter(item => item.category === 'Shrimp')
-    //         setAllProducts(filteredProducts)
-    //     }
-
-    //     if(category === 'DUMPLINGS'){
-    //         const filteredProducts = products.filter(item => item.category === 'Dumplings')
-    //         setAllProducts(filteredProducts)
-    //     }
-    //     if(category === 'ASIAN FOOD'){
-    //         const filteredProducts = products.filter(item => item.category === 'Asian Food')
-    //         setAllProducts(filteredProducts)
-    //     }
-    // },[category])
     return (
         <Helmet title="Home">
             <section>
@@ -140,40 +97,7 @@ const Home = () => {
                     </Row>
                 </Container>
             </section>
-            {/* <section>
-                <Container>
-                    <Row>
-                        <Col lg='12' className="text-center">
-                            <h2>Popular Foods</h2>
-                        </Col>
-                        <Col lg='12'>
-                            <div className="food_category d-flex align-items-center justify-content-center gap-5">
-                                <button className={`all_btn  ${category === "ALL" ? "foodBtnActive" : "" } `}
-                                      onClick={() => setCategory("ALL")} > All </button>
-                                <button className={`d-flex align-items-center gap-2 ${category === "NOODLES" ? "foodBtnActive" : ""} `} 
-                                    onClick={() => setCategory('NOODLES')}>
-                                    <img src={foodCategoryImg1} alt="" />Noodles</button>
-                                <button className={`d-flex align-items-center gap-2 ${category === "SHRIMPS" ? "foodBtnActive" : ""} `} 
-                                    onClick={() => setCategory('SHRIMPS')}>
-                                    <img src={foodCategoryImg2} alt="" />Shrimp</button>
-                                <button className={`d-flex align-items-center gap-2 ${category === "DUMPLINGS" ? "foodBtnActive" : ""} `} 
-                                    onClick={() => setCategory('DUMPLINGS')}>
-                                    <img src={foodCategoryImg3} alt="" />Dumplings</button>
-                                <button className={`d-flex align-items-center gap-2 ${category === "ASIAN FOOD" ? "foodBtnActive" : ""} `} 
-                                    onClick={() => setCategory('ASIAN FOOD')}>
-                                    <img src={foodCategoryImg4} alt="" />Asian Food</button>
-                            </div>
-                        </Col>
-                        {
-                            allProducts.map(item => (
-                                <Col lg='3' md='4' sm='6' xs='6' key={item.id} className='mt-5'>
-                                    <ProductCard item={item}/>
-                                </Col>
-                             ))
-                        }     
-                    </Row>
-                </Container>
-            </section> */}
+            
             <section className="why_choose-us">
                 <Container>
                     <Row>
@@ -214,22 +138,6 @@ const Home = () => {
                 </Container>
             </section>
 
-            {/* <section className="pt-0 mb-5">
-                <Container>
-                    <Row>
-                        <Col lg='12' className="text-center mb-5">
-                            <h2>Delicious Noodles</h2>
-                        </Col>
-                        {
-                            DeliciousNoodles.map(item => (
-                                <Col lg ='3' md='4' key={item.id} >
-                                    <ProductCard item={item} />
-                                </Col>
-                            ))
-                        }
-                    </Row>
-                </Container>
-            </section> */}
 
             <section>
                 <Container>

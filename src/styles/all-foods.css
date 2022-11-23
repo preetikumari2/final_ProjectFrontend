@@ -1,5 +1,5 @@
 .food_containers{
-  padding-top: 100px;
+  padding-top: 30px;
   display: grid;
   grid-template-columns: auto auto auto;
   padding-left: 70px;
@@ -10,4 +10,17 @@
   width: 100px;
   display: inline-block;
   object-fit: cover;
+}
+.cart_img{
+  padding-top: 30px;
+}
+.cart_img img{
+ width: 200px;
+}
+.incre_decre button{
+  border-radius: 5px;
+  border: none;
+  margin: 6px;
+  color: black;
+  background-color: rgb(249, 167, 167);
 }

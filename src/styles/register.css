@@ -1,3 +1,24 @@
 .registerpage{
-    padding-top: 100px;
+    text-align: center;
+    margin-top: 150px; 
+    margin-bottom: 90px;
+    box-sizing: border-box;
+    width: 300px;   
 }
+.registerpage button{
+    background-color: red;
+}
+.registerpage h2{
+    padding-bottom: 20px;
+}
+.register_container{
+    border: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form_group{
+   margin: 20px;
+   border: none;
+}
+

@@ -1,144 +1,63 @@
-// import React from 'react';
-// import CommonSection from '../components/UI/common-section/CommonSection.js';
-// import Helmet from '../components/Helmet/Helmet.js';
-import '../styles/cart-page.css';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { Container, Row, Col } from 'reactstrap';
-// import { cartActions } from '../store/shopping-cart/cartSlice';
-// import { Link } from 'react-router-dom';
+import '../styles/all-foods.css';
 
+import React from 'react';
 
-// const Cart = () => {
-//     const cartItems = useSelector(state => state.cart.cartItems);
-//     const totalAmount = useSelector(state => state.cart.totalAmount);
-//     return (
-//         <Helmet title='Cart'>
-//             <CommonSection title='Your Cart' />
-//             <section>
-//                 <Container>
-//                     <Row>
-//                         <Col lg='12' >
-//                             {
-//                                 cartItems.length === 0 ? <h5 className="text-center mt-5 mb-5">
-//                                     Your cart is empty</h5> : ( <table className="table table-bordered mt-5 mb-5">
-//                                 <thead>
-//                                     <tr>
-//                                         <th className="text-center">Image</th>
-//                                         <th className="text-center">Product Title</th>
-//                                         <th className="text-center">Price</th>
-//                                         <th className="text-center">Quantity</th>
-//                                         <th className="text-center">Delete</th>
-//                                     </tr>
-//                                 </thead>
-//                                 <tbody>
-//                                 {
-//                                     cartItems.map((item) => (
-//                                     <Tr item={item} key={item.id} />
-//                                     )
-//                                 )}    
-//                                 </tbody>
-//                             </table>
-//                             )}
+export default function Cart({ cart, setCart }) {
+  const totalAmount = () => {
+    return cart.reduce(
+      (sum, { price, quantity }) => sum + price * quantity,
+      0
+    );
+  };
 
-//                             <div>
-//                                 <h6>Subtotal: <span className="cart_subtotal">${totalAmount}</span></h6>
-//                                 <p>Taxes and shipping will calculate at checkout</p>
-//                                 <div className="cart_page-btn">
-//                                     <button className="addTOCart_btn me-3"><Link to='/foods' >Continue Shopping</Link></button>
-//                                     <button className="addTOCart_btn"><Link to='/checkout'>Proceed to checkout</Link></button>
-//                                 </div>
-//                             </div>
-//                         </Col>
-//                     </Row>
-//                 </Container>
-//             </section>
-//         </Helmet>
-//     );
-// };
+  const clearCart = () => {
+    setCart([]);
+  };
 
-// const Tr = props =>{
-//     const { id, image, title, price, quantity } = props.item;
-//     const dispatch = useDispatch();
+  const deleteFromCart = (foodToRemove) => {
+    setCart(
+      cart.filter((food) => food !== foodToRemove)
+    );
+  };
+  const paymentSuccess=()=>{
+    window.alert("Your order is placed")
+  }
+  const handleChange = (food, d) => {
+    const ind = cart.indexOf(food);
+    
+    const arr = cart;
+    arr[ind].quantity += d;
 
-//     const deleteItem = () => {
-//         dispatch(cartActions.deleteItem(id))
-//     }
-//     return <tr>
-//         <td className="text-center cart_img-box">
-//             <img src={image} alt=""  />
-//         </td>
-//         <td className="text-center">{title}</td>
-//         <td className="text-center">${price}</td>
-//         <td className="text-center">{quantity}px</td>
-//         <td className="text-center cart_item-del">
-//             <i className="ri-delete-bin-line" onClick={deleteItem}></i>
-//         </td>
-//     </tr>
-// }
+    if (arr[ind].quantity === 0) arr[ind].quantity = 1;
+    setCart([...arr]);
+  };
 
-// export default Cart
-
-import React from 'react'
-import {useSelector,useDispatch} from 'react-redux';
-// import './Cartone.css'
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-
-import { Link } from 'react-router-dom';
-const Cart = () => {
-    const dispatch=useDispatch();
-    const navigate=useNavigate();
-    const cart=useSelector((state)=>state);
-
-
-
-    const [content, setContent] = useState("");
-
-
-    return (
-        <>
-        <div className="cart_container">
-        <h3 className='cart_heading'>Items Added to Cart</h3>
-        <div>
-        {cart.map((user)=>{
-        return(
-            <div className='cartcad' key={user.id}><div>
-            <img className="cart-image" src={user.image} alt={user.name}></img><br></br>
-            </div>
-            <div>
-                <h3 className="products-name">{user.name}</h3>
-                <h3>Total amount : {(user.price) * user.quantity} </h3>
-            </div>
-            <div >
-            <div>
-                <h3 className="products-price">{(user.price)}/-</h3>
-                <button onClick={()=>dispatch({type:"REMOVE",payload:user})}>remove</button>
-            </div>
-            <div>
-              <button onClick={()=>dispatch({type:"INCREASE",payload:user})}>+</button>
-              <p className='space'>{user.quantity}</p>
-             <button onClick={() => {
-                if (user.quantity > 1) {
-                dispatch({ type: "DECREASE", payload:user });
-                } else{
-                    dispatch({ type: "REMOVE", payload: user });
-                }
-             }}> - </button>
-            </div>
-            </div>
-        </div>)
-    }
-  )}
-
-   </div>
-  <br></br>
-  <button className='product--add' >
-  <Link to='/checkout' >Proceed to checkout</Link>
-  </button>
- </div> 
- </>
- )
+  return (
+    <div className="cart_img">  
+      {cart.length > 0 && (
+        <button class="btn fill" onClick={clearCart}>Remove All</button>
+      )}
+      <div className="foods cart_box ">
+        {cart.map((food, idx) => (
+          <div className="food cart_img" key={idx}>
+            <img className='foods-image card_img card' src={food.image} alt={food.name} />
+            <h3 className='text-center'>{food.name}</h3>
+            <h4 className='text-center'><span>$</span> {food.price}</h4>
+            
+          <div className='incre_decre text-center'>
+            <button class="btn btn-outline-primary " onClick={() => handleChange(food, 1)}>+</button>
+            <button class="btn btn-outline-primary ">{food.quantity}</button>
+            <button class=" btn btn-outline-primary" onClick={() => handleChange(food, -1)}>-</button>
+          </div>
+            <hr></hr>
+            <div className='text-center'><button class="btn fill" onClick={() => deleteFromCart(food)}>
+            <i class="ri-close-circle-fill"></i>
+            </button></div>   
+          </div>          
+        ))}
+      </div>     
+      <div><h3>Sub Total: $ {totalAmount()}</h3></div>
+      <button onClick={() => paymentSuccess()} class="btn fill " >Proceed to Pay</button>   
+      </div> 
+  );
 }
-
-export default Cart
-

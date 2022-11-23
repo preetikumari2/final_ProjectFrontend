@@ -4,25 +4,18 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import logo from './assets/Images/res-logo.png';
 import Layout from './components/Layout/Layout';
-
 import AuthService from "./Services/auth-service";
-
 import Login from "./pages/Login";
-//import Register from "./components/Register";
 import Home from "./pages/Home";
 import AllFoods from "../src/pages/AllFoods.js";
 import Cart from "../src/pages/Cart.js"; 
-import Checkout from "../src/pages/Checkout.js";
 import Contact from "../src/pages/Contact.js";
 import Profile from "./pages/Profile";
-import BoardUser from "./pages/BoardUser";
-//import BoardModerator from "./components/BoardModerator";
 import AdminBoard from "./pages/AdminBoard";
-import AddUser from "./pages/AddUser";
+import ContactBoard from "./pages/ContactBoard";
 import EditUser from "./pages/EditUser";
 import ViewUser from "./pages/ViewUser";
 import AddFood from "./pages/AddFood";
-// import { cartUiActions } from '../src/store/shopping-cart/cartUiSlice';
 import { useSelector, useDispatch } from "react-redux";
 import Register from "./pages/Register";
 
@@ -31,24 +24,7 @@ const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
   
-  // const headerRef = useRef(null);
-  // const totalQantity = useSelector(state => state.cart.totalQantity);
-  //   const dispatch = useDispatch() ;
-  //   const toggleCart = () =>{
-  //     dispatch(cartUiActions.toggle());
-  // }
-
-  // useEffect(() =>{
-  //   window.addEventListener('scroll', ()=>{
-  //       if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
-  //           headerRef.current.classList.add('header_shrink');
-  //       }
-  //       else{
-  //           headerRef.current.classList.remove('header_shrink');
-  //       }
-  //   })
-  //   return () => window.removeEventListener("scroll", null);
-  // },[])
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -63,6 +39,14 @@ const App = () => {
   const logOut = () => {
     AuthService.logout();
   };
+
+  const getCartTotal = () => {
+    return cart.reduce(
+      (sum, { quantity }) => sum + quantity,
+      0
+    );
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand navbar-white">
@@ -76,18 +60,12 @@ const App = () => {
               Home
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to={"/register"} className="nav-link">
-              SignUp
-            </Link>
-          </li>
-          {/* {showModeratorBoard && (
-            <li className="nav-item">
-              <Link to={"/mod"} className="nav-link">
-                Moderator Board
-              </Link>
-            </li>
-          )}*/}
+          {!currentUser && <li className="nav-item">
+          <Link to={"/register"} className="nav-link">
+          Signup
+          </Link>
+          </li>}
+          
           {showAdminBoard && (
             <>
             <li className="nav-item">
@@ -100,24 +78,29 @@ const App = () => {
               Add
             </Link>
           </li>
+          <li className="nav-item">
+              <Link to={"/contactBoard"} className="nav-link">
+                Details
+              </Link>
+            </li>
           </>
           )} 
 
-          {currentUser && (
+          {currentUser && !showAdminBoard && (
             <li className="nav-item">
               <Link to={"/foods"} className="nav-link">
                 Food
               </Link>
             </li>
           )}
-          {currentUser && (
+          {currentUser && !showAdminBoard && (
             <li className="nav-item">
               <Link to={"/cart"} className="nav-link">
-                Cart
+                Cart <sup>{getCartTotal()}</sup>
               </Link>
             </li>
           )}
-          {currentUser && (
+          {currentUser && !showAdminBoard && (
             <li className="nav-item">
               <Link to={"/contact"} className="nav-link">
                 Contact
@@ -157,21 +140,17 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/home" element={<Home/>} />
-          <Route path="/foods" element={<AllFoods/>} />
-          <Route path="/cart" element={<Cart/>} />
-          <Route path="/checkout" element={<Checkout/>} />
+          <Route path="/foods" element={<AllFoods cart={cart} setCart={setCart}/>} />  
+          <Route path="/cart" element={<Cart cart={cart} setCart={setCart}/>} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/profile" element={<Profile/>} />
-          <Route path="/user" element={<BoardUser/>} />
           <Route path="/admin" element={<AdminBoard/>} />
-          <Route path="/addUser" element={<AddUser/>} />
           <Route path="/editUser/:id" element={<EditUser/>} />
           <Route path="/viewUser/:id" element={<ViewUser/>} />
           <Route path="/addFood" element={<AddFood/>} />
           <Route path="/register" element={<Register/>} />
-
-
+          <Route path="/contactBoard" element={<ContactBoard/>} />
         </Routes>
       </div>
       <div>

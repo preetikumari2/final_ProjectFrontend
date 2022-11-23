@@ -43,7 +43,7 @@ export default function EditUser() {
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
               <label htmlFor="FirstName" className="form-label">
-                Fame
+                Name
               </label>
               <input
                 type="text"

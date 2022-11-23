@@ -6,3 +6,17 @@
     height: 40px;
     /* background-color: blue; */
 }
+
+.contact_table{
+    border: 1px solid black;
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 40px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.contact_table td, th{
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}

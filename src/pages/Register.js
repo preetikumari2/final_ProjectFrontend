@@ -5,7 +5,7 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import "../styles/register.css";
 import { useNavigate } from "react-router-dom";
-
+import Checkout from "./Checkout";
 import AuthService from "../Services/auth-service.js";
 import { Navigate } from "react-router-dom";
 import { Button } from "reactstrap";
@@ -109,47 +109,51 @@ const Register = () => {
   };
   const {log}=console;
   return (
+    <div className="register_container">
     <div className="registerpage">
         {log(Input)}
       <Form onSubmit={handleRegister} ref={form}>
-        <div className="box1">
+        <div className="box1 ">
           <div className="forms1">
             <h2>Sign Up</h2>
-            <div className="inputBox1">
-              <span>Username</span>
+            <div className="form_group">
+             
               <Input
                 type="text"
                 name="username"
                 value={username}
+                placeholder="username"
                 onChange={onChangeUsername}
                 validations={[required, vusername]}
               />
             </div>
-            <div className="inputBox1">
-              <span>Email</span>
+            <div className="form_group" mb='5'>
+              
               <input
                 type="email"
                 name="email"
                 value={email}
+                placeholder="email"
                 onChange={onChangeEmail}
                 validations={[required, validEmail]}
               />
             </div>
-            <div className="inputBox1">
-              <span>Password</span>
+            <div className="form_group">
+              
               <input
                 type="password"
                 name="password"
                 value={password}
+                placeholder="password"
                 onChange={onChangePassword}
                 validations={[required, vpassword]}
               />
             </div>
-            <div className="buttonBox1">
+            <div>
               <Button className="btn btn-primary btn-block">Register</Button>
             </div>
           </div>
-
+        
           {message && (
             <div className="form-group">
               <div
@@ -165,6 +169,7 @@ const Register = () => {
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </div>
       </Form>
+    </div>
     </div>
   );
 };

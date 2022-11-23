@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
-import UserService from "../Services/user-service";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const AddFood = () => {
@@ -10,12 +9,11 @@ const [users,setUsers]=useState([]);
 const {id}=useParams();
 const [user, setUser] = useState({
     name: "",
-    // description: "",
-    image: "",
     price:"",
 });
+const [image,setImage] = useState()
 
-const { name, image, price } = user;
+const { name, price } = user;
 
 const onInputChange = (e) => {
 setUser({ ...user, [e.target.name]: e.target.value });
@@ -27,7 +25,7 @@ let oFReader = new FileReader();
 oFReader.readAsDataURL(e.target.files[0]);
 oFReader.onload = function (oFREvent) {
 
-  user.image = oFREvent.target.result;
+  setImage(oFREvent.target.result);
   };
 }
 
@@ -35,13 +33,16 @@ const onSubmit = async (e) => {
 
     e.preventDefault();
 
-    console.log(user.description);
 
-    console.log(user.name);
-
-    console.log(user.image);
-     await axios.post("http://localhost:8080/api/image",user);
-
+    let curruser = {
+      name:name,
+      price:price,
+      image:image
+    
+    }
+    
+     await axios.post("http://localhost:8080/api/image",curruser);
+    console.log(curruser)
      alert("Image Added Succesfully")
 
      navigate("/")
@@ -49,9 +50,7 @@ const onSubmit = async (e) => {
    };
     return (
         <div className="container">
-      <header className="jumbotron">
-        {/* <h3>{content}</h3> */}
-      </header>
+      
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
           <h2 className="text-center m-4">Add Food</h2>
@@ -69,18 +68,7 @@ const onSubmit = async (e) => {
                 onChange={(e) =>onInputChange(e)}  />
 
             </div>
-             {/* <div className="mb-3">
-              <label htmlFor="LastName" className="form-label">
-                Description
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Short Description"
-                name="description"
-                value={description}
-                onChange={(e) => onInputChange(e)} />
-            </div> */}
+             
             <div className="mb-3">
               <label htmlFor="LastName" className="form-label">
                 Price
@@ -93,15 +81,16 @@ const onSubmit = async (e) => {
                 onChange={(e) => onInputChange(e)}  />
             </div>
             <div className="mb-3">
-              <label htmlFor="Address" className="form-label">
+              <label htmlFor="image" className="form-label">
                 Upload Image
               </label>
               <input
                 type="file"
                 className="form-control"
+                hidden
                 placeholder="Choose Image"
                 name="image"
-                // value={image}
+                id="image"
                 accept="image/*"
                 onChange={(e) => PreviewImage(e)}
               />
